@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  place_name: MyString
+  stime: 2020-03-29 22:09:39
+  etime: 2020-03-29 22:09:39
+  menu: MyText
+  intention_state: MyString
+
+two:
+  place_name: MyString
+  stime: 2020-03-29 22:09:39
+  etime: 2020-03-29 22:09:39
+  menu: MyText
+  intention_state: MyString
