@@ -1,5 +1,6 @@
 <div class="container">
 <h1>場所一覧</h1>
+<%= link_to "場所登録", new_place_path, class:"place-create btn btn-primary" %>
     <% @places.each do |place| %>
         <li>
             <%= link_to place.name, place %>
