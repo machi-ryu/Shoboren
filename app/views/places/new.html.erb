@@ -1,0 +1,13 @@
+<h1>場所登録画面</h1>
+
+<div class="row">
+    <%= form_for(@place) do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name, class:'form-control' %>
+
+        <%= f.label :menu %>
+        <%= f.text_field :menu, class:'form-control' %>
+
+        <%= f.submit "登録", class:"btn btn-primary" %>
+    <% end %>
+</div>
