@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  root "places#index"
+  devise_for :users
+  #root "places#index"
+  root "user#show"
   resources :places
 
 end

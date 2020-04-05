@@ -1,0 +1,9 @@
+<p><%= @user.email %>さん　マイページ</p>
+
+<p>予定場所</p>
+<% @places.each do |place| %>
+    <%= place.id %>
+    <%= place.name %>
+    <%= place.menu %>
+    <br>
+<% end %>
