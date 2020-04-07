@@ -13,6 +13,7 @@
                     <div><%= hidden_field_tag :place_id, place.id %></div>
                     <%= f.submit "参加", class:"btn btn-primary btn-attend" %>
                 <% end %>
+                <%= @joins.where("place_id = (?)", place.id).count %> 人
             </li>
         </div>
     <% end %>

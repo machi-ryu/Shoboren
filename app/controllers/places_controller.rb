@@ -3,6 +3,7 @@ class PlacesController < ApplicationController
 
     def index
         @places = Place.all
+        @joins = Join.all
     end
 
     def show
