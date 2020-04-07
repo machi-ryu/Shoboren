@@ -2,9 +2,18 @@
 <h1>場所一覧</h1>
 <%= link_to "場所登録", new_place_path, class:"place-create btn btn-primary" %>
     <% @places.each do |place| %>
-        <li>
-            <%= link_to place.name, place %>
-            <%= place.menu %>
-        </li>
+        <div class="place-item">
+            <li>
+                <div class="place-content">
+                    <%= link_to place.name, place %>
+                    <%= place.menu %>
+                    <%= place.intention_state %>
+                </div>
+                <%= form_for(current_user.joins.build) do |f| %>
+                    <div><%= hidden_field_tag :place_id, place.id %></div>
+                    <%= f.submit "参加", class:"btn btn-primary btn-attend" %>
+                <% end %>
+            </li>
+        </div>
     <% end %>
 <div>

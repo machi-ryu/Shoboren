@@ -29,7 +29,19 @@ header {
     }
 }
 
-/* index */
+/* place index*/
 .place-create {
     float: right;
+}
+.place-item {
+    width: 70%;
+    li {
+        list-style: none;
+    }
+}
+.place-content {
+    float: left;
+}
+.btn-attend {
+    width: 70px;
 }

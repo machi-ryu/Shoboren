@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   #root "places#index"
   root "user#show"
   resources :places
+  resources :joins
 
 end
