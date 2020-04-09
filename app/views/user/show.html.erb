@@ -1,5 +1,10 @@
 <p><%= @user.email %>さん　マイページ</p>
 
+<!--
+<p><%= @sanka_place.nil? ? nil : @sanka_place.etime %></p>
+<p><%= @sanka_place.nil? ? nil : Date.parse(@sanka_place.etime.to_s) %></p>
+<%= @blank_term %>
+-->
 前回のしょぼ練より
 <span class="interval-day"><%= @sanka_place.nil? ? nil : (Date.today - Date.parse(@sanka_place.etime.to_s)).to_i %></span>
 日間空いています。

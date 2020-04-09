@@ -10,7 +10,11 @@ class UserController < ApplicationController
         @places2 = Place.all
 
         sanka_place = current_user.places.where("sanka_flg = (?)", 1)
-        @sanka_place = sanka_place.order(etime: :DESC).first
+        if sanka_place.nil?
+
+        else
+            @sanka_place = sanka_place.order(etime: :DESC).first
+        end
     end
 
 end
