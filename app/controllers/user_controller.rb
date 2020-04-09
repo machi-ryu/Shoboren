@@ -11,6 +11,9 @@ class UserController < ApplicationController
 
         sanka_place = current_user.places.where("sanka_flg = (?)", 1)
         @sanka_place = sanka_place.order(etime: :DESC).first
+        #sanka_date = Date.parse(@sanka_place.etime.to_s)
+        #today = Date.today
+        #@blank_term = (today - sanka_date).to_i
     end
 
 end
