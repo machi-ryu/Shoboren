@@ -8,6 +8,9 @@ class UserController < ApplicationController
         id = current_user.place_ids
         @places = Place.where("id IN (?)", id)
         @places2 = Place.all
+
+        sanka_place = current_user.places.where("sanka_flg = (?)", 1)
+        @sanka_place = sanka_place.order(etime: :DESC).first
     end
 
 end

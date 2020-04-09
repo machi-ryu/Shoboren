@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_01_161303) do
+ActiveRecord::Schema.define(version: 2020_04_09_122829) do
 
   create_table "joins", force: :cascade do |t|
     t.integer "user_id"
     t.integer "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sanka_flg"
   end
 
   create_table "places", force: :cascade do |t|
