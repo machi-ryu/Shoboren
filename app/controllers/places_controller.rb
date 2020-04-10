@@ -25,7 +25,7 @@ class PlacesController < ApplicationController
 
     private
         def place_params
-            params.require(:place).permit(:name, :menu, :intention_state)
+            params.require(:place).permit(:name, :menu, :intention_state , :stime, :etime)
         end
 
 end

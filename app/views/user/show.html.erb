@@ -16,8 +16,7 @@
         <%= place.id %>
         <%= place.name %>
         <%= place.menu %>
-        <%= place.stime %>
-        <%= place.etime %>
+        <%= place.stime.strftime("%m/%d %a %H:%M〜") %><%= place.etime.strftime("%H:%M") %>
         <br>
         <%= form_for(current_user.joins.find_by(place_id: place.id),
                     html: { method: :delete }) do |f| %>

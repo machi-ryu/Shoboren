@@ -8,6 +8,7 @@
                     <%= link_to place.name, place %>
                     <%= place.menu %>
                     <%= place.intention_state %>
+                    <%= place.stime.strftime("%m/%d %a %H:%M〜") %><%= place.etime.strftime("%H:%M") %>
                 </div>
                 <%= form_for(current_user.joins.build) do |f| %>
                     <div><%= hidden_field_tag :place_id, place.id %></div>

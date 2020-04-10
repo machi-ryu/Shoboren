@@ -1,13 +1,8 @@
 <h1>場所データ</h1>
 
 <div class="container">
-    <div class="name">
-        <%= @place.name %>
-    </div>
-    <div class="name">
-        <%= @place.menu %>
-    </div>
-    <div class="intention_state">
-        <%= @place.intention_state %>
-    </div>
+    <div class="name"><%= @place.name %></div>
+    <div class="menu"><%= @place.menu %></div>
+    <div class="time"><%= @place.stime.strftime("%m/%d %a %H:%M〜") %><%= @place.etime.strftime("%H:%M") %></div>
+    <div class="intention_state"><%= @place.intention_state %></div>
 <div>
