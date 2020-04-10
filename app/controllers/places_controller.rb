@@ -23,6 +23,18 @@ class PlacesController < ApplicationController
         end
     end
 
+    def edit
+        @place = Place.find(params[:id])
+    end
+
+    def update
+        @place = Place.find(params[:id])    
+        if @place.update_attributes(place_params)
+           redirect_to @place 
+        else
+            render 'edit'
+        end
+    end
     private
         def place_params
             params.require(:place).permit(:name, :menu, :intention_state , :stime, :etime)

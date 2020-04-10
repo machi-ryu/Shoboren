@@ -1,0 +1,19 @@
+<h1>場所修正</h1>
+
+<div class="row">
+    <%= form_for(@place) do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name, class:'form-control' %>
+
+        <%= f.label :menu %>
+        <%= f.text_field :menu, class:'form-control' %>
+
+        <div><label class="control-label">開始時間</label>
+        <%= f.datetime_select :stime, class:'form-control' %></div>
+
+        <div><label class="control-label">終了時間</label>
+        <%= f.datetime_select :etime, class:'form-control' %></div>
+
+        <%= f.submit "更新", class:"btn btn-primary" %>
+    <% end %>
+</div>
