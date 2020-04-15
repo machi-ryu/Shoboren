@@ -13,16 +13,26 @@ class JoinsController < ApplicationController
     def update
         @join = current_user.joins.find_by(place_id: params[:place_id])
 
-        if params[:attend_flg] != nil
-            #@join.update_attribute(:attend_flg, params[:attend_flg])
-            @join.update_attributes(join_params)
-        else
+        #if params[:attend_flg] != nil
+        #    #@join.update_attribute(:attend_flg, params[:attend_flg])
+        #    @join.update_attributes(join_params)
+        #else
+        #    if @join.sanka_flg == 1
+        #        @join.sanka_flg = 0
+        #    else
+        #        @join.sanka_flg = 1
+        #    end
+        #    @join.save
+        #end
+        if params[:attend_flg] == nil
             if @join.sanka_flg == 1
                 @join.sanka_flg = 0
             else
                 @join.sanka_flg = 1
             end
             @join.save
+        else
+            @join.update_attributes(join_params)
         end
         redirect_to root_path
     end
