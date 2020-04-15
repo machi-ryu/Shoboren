@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_09_122829) do
+ActiveRecord::Schema.define(version: 2020_04_15_130701) do
 
   create_table "joins", force: :cascade do |t|
     t.integer "user_id"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2020_04_09_122829) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "sanka_flg"
+    t.integer "attend_flg"
+    t.index ["user_id", "place_id"], name: "index_joins_on_user_id_and_place_id", unique: true
   end
 
   create_table "places", force: :cascade do |t|
