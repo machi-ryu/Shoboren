@@ -21,6 +21,12 @@
                     <% end %>
                 <% end %>
                 <%= @joins.where("place_id = (?)", place.id).count %> 人
+                (
+                絶対<%= place.joins.where("attend_flg = (?)", 0).count %>人
+                たぶん<%= place.joins.where("attend_flg = (?)", 1).count %>人
+                五分<%= place.joins.where("attend_flg = (?)", 2).count %>人
+                きびしいが<%= place.joins.where("attend_flg = (?)", 3).count %>人
+                )
             </li>
         </div>
     <% end %>
