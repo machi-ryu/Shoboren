@@ -11,6 +11,13 @@ class UserController < ApplicationController
 
         sanka_place = current_user.places.where("sanka_flg = (?)", 1)
         @sanka_place = sanka_place.order(etime: :DESC).first
+        if @sanka_place.nil?
+            @blank_term = 0
+        else
+            @blank_term = (Date.today - Date.parse(@sanka_place.etime.to_s)).to_i
+        end
+
+        @joins = current_user.joins
     end
 
     def edit
@@ -28,7 +35,7 @@ class UserController < ApplicationController
 
     private
         def user_params
-            params.require(:user).permit(:name, :email)
+            params.require(:user).permit(:name, :level, :email)
         end
 
 end

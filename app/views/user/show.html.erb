@@ -1,4 +1,9 @@
 <p><%= @user.name %>さん　マイページ</p>
+<p><% if @user.level == 0 %>健康のため</p>
+<p><% elsif @user.level == 1 %>草サッカー</p>
+<p><% elsif @user.level == 2 %>アスリート</p>
+<p><% elsif @user.level == 3 %>トップアスリート</p>
+<% end %>
 
 <!--
 <p><%= @sanka_place.nil? ? nil : @sanka_place.etime %></p>
@@ -6,8 +11,30 @@
 <%= @blank_term %>
 -->
 前回のしょぼ練より
-<span class="interval-day"><%= @sanka_place.nil? ? nil : (Date.today - Date.parse(@sanka_place.etime.to_s)).to_i %></span>
+    <span class="interval-day"><%= @sanka_place.nil? ? nil : @blank_term %></span>
 日間空いています。
+
+<% if @user.level == 3 %></p><!-- トップアスリート-->
+    <p><% if @blank_term >= 7 %>もうやばいですよ</p>
+    <p><% elsif @blank_term >= 3 %>コンディション下がりますよ。戻すのに２週間かかります。</p>
+    <p><% elsif @blank_term >= 0 %>いい感じですね。</p>
+    <% end %>
+<% elsif @user.level == 2 %><!-- アスリート -->
+    <p><% if @blank_term >= 14 %>もうやばいですよ</p>
+    <p><% elsif @blank_term >= 7 %>コンディション下がりますよ。戻すのに２週間かかります。</p>
+    <p><% elsif @blank_term >= 0 %>いい感じですね。</p>
+    <% end %>
+<% elsif @user.level == 1 %><!-- 草サッカー -->
+    <p><% if @blank_term >= 14 %>そろそろいかないと、あんまり動けなくなりますよ。</p>
+    <p><% elsif @blank_term >= 7 %>今週どこかでいきたいですね。</p>
+    <p><% elsif @blank_term >= 0 %>いい感じですね。</p>
+    <% end %>
+<% elsif @user.level == 0 %><!-- 健康のため-->
+    <p><% if @blank_term >= 14 %>もうやばいですよ</p>
+    <p><% elsif @blank_term >= 7 %>コンディション下がりますよ。戻すのに２週間かかります。</p>
+    <p><% elsif @blank_term >= 0 %>いい感じですね。</p>
+    <% end %>
+<% end %>
 
 
 <div class="my-place">
@@ -18,6 +45,13 @@
         <%= place.menu %>
         <%= place.stime.strftime("%m/%d %a %H:%M〜") %><%= place.etime.strftime("%H:%M") %>
         <br>
+                <%= @joins.where("place_id = (?)", place.id).count %> 人
+                (
+                絶対<%= place.joins.where("attend_flg = (?)", 0).count %>人
+                たぶん<%= place.joins.where("attend_flg = (?)", 1).count %>人
+                五分<%= place.joins.where("attend_flg = (?)", 2).count %>人
+                きびしいが<%= place.joins.where("attend_flg = (?)", 3).count %>人
+                )
         <!-- 参加フラグ -->
         <%= form_for(current_user.joins.find_by(place_id: place.id),
                     html: { method: :delete }) do |f| %>

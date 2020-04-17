@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_15_162515) do
+ActiveRecord::Schema.define(version: 2020_04_16_160631) do
 
   create_table "joins", force: :cascade do |t|
     t.integer "user_id"
