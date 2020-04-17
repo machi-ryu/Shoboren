@@ -2,7 +2,7 @@ class PlacesController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        @places = Place.all
+        @places = Place.all.order(etime: :DESC)
         @joins = Join.all
     end
 
