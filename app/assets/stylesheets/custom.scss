@@ -34,30 +34,76 @@ header {
 .place-create {
     float: right;
 }
+
 .place-item {
     width: 70%;
     margin-top: 20px;
-    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
+    &:last-child {
+        border-bottom: 1px solid gray;
+    }
     li {
         list-style: none;
     }
 }
+
 .place-content {
     float: left;
 }
+
 .btn-attend {
     width: 70px;
 }
+
 .btn-grayout {
     background-color: #bbb;
 }
+
 /* my-page */
-.my-place {
-    margin: 30px 20px;
+#my-page {
+    margin: 0 5px;
 }
+
 .interval-day {
     font-size: 2em;
 }
+
+.my-places {
+    margin: 30px 20px;
+}
+
+.my-place {
+    height: 100px;
+    border-top: 1px solid gray;
+    &:last-child{
+        border-bottom: 1px solid gray;
+    }
+    .title {
+        text-align: center;
+        width: 20%;
+        height: 100%;
+        float: left;
+        overflow: hidden;
+        .name {
+            font-size: 1.5em;
+        }
+    }
+    .detail {
+        width: 40%;
+        height: 100%;
+        float: left;
+        overflow: hidden;
+    }
+    .btn-area {
+        //width: 20%;
+        float: left;
+        height: 100%;
+        .btn {
+        }
+    }
+    
+}
+
 .btn-result {
     width: 130px;
     background-color: skyblue;

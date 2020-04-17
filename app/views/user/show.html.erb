@@ -1,115 +1,116 @@
-<p><%= @user.name %>さん　マイページ</p>
-<p><% if @user.level == 0 %>健康のため</p>
-<p><% elsif @user.level == 1 %>草サッカー</p>
-<p><% elsif @user.level == 2 %>アスリート</p>
-<p><% elsif @user.level == 3 %>トップアスリート</p>
-<% end %>
-
-<!--
-<p><%= @sanka_place.nil? ? nil : @sanka_place.etime %></p>
-<p><%= @sanka_place.nil? ? nil : Date.parse(@sanka_place.etime.to_s) %></p>
-<%= @blank_term %>
--->
-前回のしょぼ練より
-    <span class="interval-day"><%= @sanka_place.nil? ? nil : @blank_term %></span>
-日間空いています。
-
-<% if @user.level == 3 %></p><!-- トップアスリート-->
-    <p><% if @blank_term >= 7 %>もうやばいですよ</p>
-    <p><% elsif @blank_term >= 3 %>コンディション下がりますよ。戻すのに２週間かかります。</p>
-    <p><% elsif @blank_term >= 0 %>いい感じですね。</p>
+<div id="my-page">
+    <p><%= @user.name %>さん　マイページ</p>
+    <p><% if @user.level == 0 %>健康のため</p>
+        <p><% elsif @user.level == 1 %>草サッカー</p>
+        <p><% elsif @user.level == 2 %>アスリート</p>
+        <p><% elsif @user.level == 3 %>トップアスリート</p>
     <% end %>
-<% elsif @user.level == 2 %><!-- アスリート -->
-    <p><% if @blank_term >= 14 %>もうやばいですよ</p>
-    <p><% elsif @blank_term >= 7 %>コンディション下がりますよ。戻すのに２週間かかります。</p>
-    <p><% elsif @blank_term >= 0 %>いい感じですね。</p>
-    <% end %>
-<% elsif @user.level == 1 %><!-- 草サッカー -->
-    <p><% if @blank_term >= 14 %>そろそろいかないと、あんまり動けなくなりますよ。</p>
-    <p><% elsif @blank_term >= 7 %>今週どこかでいきたいですね。</p>
-    <p><% elsif @blank_term >= 0 %>いい感じですね。</p>
-    <% end %>
-<% elsif @user.level == 0 %><!-- 健康のため-->
-    <p><% if @blank_term >= 14 %>もうやばいですよ</p>
-    <p><% elsif @blank_term >= 7 %>コンディション下がりますよ。戻すのに２週間かかります。</p>
-    <p><% elsif @blank_term >= 0 %>いい感じですね。</p>
-    <% end %>
-<% end %>
 
+    <!-- 空いた期間表示 -->
+    前回のしょぼ練より
+        <span class="interval-day"><%= @sanka_place.nil? ? nil : @blank_term %></span>
+    日間空いています。
 
-<div class="my-place">
-    <p>予定場所</p>
-    <% @places.each do |place| %>
-        <%= place.id %>
-        <%= place.name %>
-        <%= place.menu %>
-        <%= place.stime.strftime("%m/%d %a %H:%M〜") %><%= place.etime.strftime("%H:%M") %>
-        <br>
-                <%= @joins.where("place_id = (?)", place.id).count %> 人
-                (
-                絶対<%= place.joins.where("attend_flg = (?)", 0).count %>人
-                たぶん<%= place.joins.where("attend_flg = (?)", 1).count %>人
-                五分<%= place.joins.where("attend_flg = (?)", 2).count %>人
-                きびしいが<%= place.joins.where("attend_flg = (?)", 3).count %>人
-                )
-        <!-- 参加フラグ -->
-        <%= form_for(current_user.joins.find_by(place_id: place.id),
-                    html: { method: :delete }) do |f| %>
-            <div><%= hidden_field_tag :place_id, place.id %></div>
-            <%= f.submit "やめる", class:"btn btn-primary btn-attend" %>
+    <% if @user.level == 3 %></p><!-- トップアスリート-->
+        <p><% if @blank_term >= 7 %>もうやばいですよ</p>
+        <p><% elsif @blank_term >= 3 %>コンディション下がりますよ。戻すのに２週間かかります。</p>
+        <p><% elsif @blank_term >= 0 %>いい感じですね。</p>
         <% end %>
-        <!-- 練習済みフラグ -->
-        <%= form_for(current_user.joins.find_by(place_id: place.id),
-                        url: {controller: "joins", action: "update_sanka"}, class:"right") do |f| %>
-            <div><%= hidden_field_tag :place_id, place.id %></div>
-            <% if current_user.joins.find_by(place_id: place.id).sanka_flg == 1 %>
-                <%= f.submit "練習済み", class:"btn btn-primary btn-result" %>
-            <% else %>
-                <%= f.submit "未実施", class:"btn btn-primary btn-result" %>
-            <% end %>
+    <% elsif @user.level == 2 %><!-- アスリート -->
+        <p><% if @blank_term >= 14 %>もうやばいですよ</p>
+        <p><% elsif @blank_term >= 7 %>コンディション下がりますよ。戻すのに２週間かかります。</p>
+        <p><% elsif @blank_term >= 0 %>いい感じですね。</p>
         <% end %>
-            <div>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter<%= place.id %>">
-                 参加可能性 
-                </button>
-                <% myjoin = current_user.joins.find_by(place_id: place.id) %>
-                <% if myjoin.attend_flg == 0 %>絶対参加します
-                <% elsif myjoin.attend_flg == 1 %>多分参加します
-                <% elsif myjoin.attend_flg == 2 %>五分五分
-                <% elsif myjoin.attend_flg == 3 %>きびしいけど行きたい
-                <% end %>
-            </div>
-                <!-- モーダルの設定 -->
-                <div class="modal fade" id="exampleModalCenter<%= place.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">参加可能性を入力ください</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                      <%= place.id %>
-                            <%if current_user.joins.find_by(place_id: place.id).nil? %>
-                                <%= form_for(current_user.joins.build) do |f| %>
-                                    <div><%= hidden_field_tag :place_id, place.id %></div>
-                                <% end %>
-                            <% else%>
-                                <%= form_for(current_user.joins.find_by(place_id: place.id)) do |f| %>
-                                    <div><%= hidden_field_tag :place_id, place.id %></div>
-                                    <div><%= f.radio_button :attend_flg, 0 %> 絶対参加します</div>
-                                    <div><%= f.radio_button :attend_flg, 1 %> 多分参加します</div>
-                                    <div><%= f.radio_button :attend_flg, 2 %> 五分五分</div>
-                                    <div><%= f.radio_button :attend_flg, 3 %> きびしいけど行きたい</div>
-                                    <div class="modal-footer">
-                                        <%= f.submit "参加", class:"btn btn-primary" %>
-                                    </div>
-                                <% end %>
-                            <% end %>
-                      </div>
-                    </div>
-                  </div>
+    <% elsif @user.level == 1 %><!-- 草サッカー -->
+        <p><% if @blank_term >= 14 %>そろそろいかないと、あんまり動けなくなりますよ。</p>
+        <p><% elsif @blank_term >= 7 %>今週どこかでいきたいですね。</p>
+        <p><% elsif @blank_term >= 0 %>いい感じですね。</p>
+        <% end %>
+    <% elsif @user.level == 0 %><!-- 健康のため-->
+        <p><% if @blank_term >= 14 %>もうやばいですよ</p>
+        <p><% elsif @blank_term >= 7 %>コンディション下がりますよ。戻すのに２週間かかります。</p>
+        <p><% elsif @blank_term >= 0 %>いい感じですね。</p>
+        <% end %>
+    <% end %>
+
+    <div class="my-places">
+        <p>予定場所</p>
+        <% @places.each do |place| %>
+            <div class="my-place">
+                <div class="title">
+                    <div class="name"><%= link_to place.name, place %></div>
+                    <div><%= @joins.where("place_id = (?)", place.id).count %> 人</div>
+                    絶対<%= place.joins.where("attend_flg = (?)", 0).count %>人
+                    たぶん<%= place.joins.where("attend_flg = (?)", 1).count %>人
+                    五分<%= place.joins.where("attend_flg = (?)", 2).count %>人
+                    きびしいが<%= place.joins.where("attend_flg = (?)", 3).count %>人
                 </div>
-    <% end %>
+                <div class="detail">
+                    <div class="time"><%= place.stime.strftime("%m/%d %a %H:%M〜") %><%= place.etime.strftime("%H:%M") %></div>
+                    <div class="menu"><%= place.menu %></div>
+                </div>
+                <div class="btn-area">
+                    <!-- 参加フラグ -->
+                    <%= form_for(current_user.joins.find_by(place_id: place.id),
+                                html: { method: :delete }) do |f| %>
+                        <div><%= hidden_field_tag :place_id, place.id %></div>
+                        <%= f.submit "やめる", class:"btn btn-primary btn-attend" %>
+                    <% end %>
+                    <!-- 練習済みフラグ -->
+                    <%= form_for(current_user.joins.find_by(place_id: place.id),
+                                    url: {controller: "joins", action: "update_sanka"}, class:"right") do |f| %>
+                        <div><%= hidden_field_tag :place_id, place.id %></div>
+                        <% if current_user.joins.find_by(place_id: place.id).sanka_flg == 1 %>
+                            <%= f.submit "練習済み", class:"btn btn-primary btn-result" %>
+                        <% else %>
+                            <%= f.submit "未実施", class:"btn btn-primary btn-result" %>
+                        <% end %>
+                    <% end %>
+                        <div>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter<%= place.id %>">
+                             参加可能性 
+                            </button>
+                            <% myjoin = current_user.joins.find_by(place_id: place.id) %>
+                            <% if myjoin.attend_flg == 0 %>絶対参加します
+                            <% elsif myjoin.attend_flg == 1 %>多分参加します
+                            <% elsif myjoin.attend_flg == 2 %>五分五分
+                            <% elsif myjoin.attend_flg == 3 %>きびしいけど行きたい
+                            <% end %>
+                        </div>
+                        <!-- モーダルの設定 -->
+                        <div class="modal fade" id="exampleModalCenter<%= place.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">参加可能性を入力ください</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                              <%= place.id %>
+                                    <%if current_user.joins.find_by(place_id: place.id).nil? %>
+                                        <%= form_for(current_user.joins.build) do |f| %>
+                                            <div><%= hidden_field_tag :place_id, place.id %></div>
+                                        <% end %>
+                                    <% else%>
+                                        <%= form_for(current_user.joins.find_by(place_id: place.id)) do |f| %>
+                                            <div><%= hidden_field_tag :place_id, place.id %></div>
+                                            <div><%= f.radio_button :attend_flg, 0 %> 絶対参加します</div>
+                                            <div><%= f.radio_button :attend_flg, 1 %> 多分参加します</div>
+                                            <div><%= f.radio_button :attend_flg, 2 %> 五分五分</div>
+                                            <div><%= f.radio_button :attend_flg, 3 %> きびしいけど行きたい</div>
+                                            <div class="modal-footer">
+                                                <%= f.submit "参加", class:"btn btn-primary" %>
+                                            </div>
+                                        <% end %>
+                                    <% end %>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
 </div>
