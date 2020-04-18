@@ -1,15 +1,25 @@
-<div class="container">
+<div id="place-list">
 <h1>場所一覧</h1>
 <%= link_to "場所登録", new_place_path, class:"place-create btn btn-primary" %>
+
+<div class="places">
     <% @places.each do |place| %>
-        <div class="place-item">
-            <li>
-                <div class="place-content">
-                    <%= link_to place.name, place %>
-                    <%= place.menu %>
-                    <%= place.intention_state %>
-                    <%= place.stime.strftime("%m/%d %a %H:%M〜") %><%= place.etime.strftime("%H:%M") %>
+        <div class="place">
+            <div class="title">
+                <div class="name"><%= link_to place.name, place %></div>
+                <div class="list">
+                    <div><%= @joins.where("place_id = (?)", place.id).count %> 人</div>
+                    絶対<%= place.joins.where("attend_flg = (?)", 0).count %>人
+                    たぶん<%= place.joins.where("attend_flg = (?)", 1).count %>人
+                    五分<%= place.joins.where("attend_flg = (?)", 2).count %>人
+                    きびしいが<%= place.joins.where("attend_flg = (?)", 3).count %>人
                 </div>
+            </div>
+            <div class="detail">
+                <%= place.stime.strftime("%m/%d %a %H:%M〜") %><%= place.etime.strftime("%H:%M") %>
+                <%= place.menu %>
+            </div>
+            <div class="btn-area">
                 <%if current_user.joins.find_by(place_id: place.id).nil? %>
                     <%= form_for(current_user.joins.build) do |f| %>
                         <div><%= hidden_field_tag :place_id, place.id %></div>
@@ -20,14 +30,8 @@
                         <%= f.submit "参加予定", class:"btn btn-primary btn-grayout" %>
                     <% end %>
                 <% end %>
-                <%= @joins.where("place_id = (?)", place.id).count %> 人
-                (
-                絶対<%= place.joins.where("attend_flg = (?)", 0).count %>人
-                たぶん<%= place.joins.where("attend_flg = (?)", 1).count %>人
-                五分<%= place.joins.where("attend_flg = (?)", 2).count %>人
-                きびしいが<%= place.joins.where("attend_flg = (?)", 3).count %>人
-                )
-            </li>
+            </div>
         </div>
     <% end %>
-<div>
+</div>
+</div>
