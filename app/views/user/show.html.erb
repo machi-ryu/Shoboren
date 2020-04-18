@@ -58,26 +58,18 @@
                         <div><%= hidden_field_tag :place_id, place.id %></div>
                         <%= f.submit "やめる", class:"btn btn-primary btn-attend" %>
                     <% end %>
-                    <!-- 練習済みフラグ -->
-                    <%= form_for(current_user.joins.find_by(place_id: place.id),
-                                    url: {controller: "joins", action: "update_sanka"}, class:"right") do |f| %>
-                        <div><%= hidden_field_tag :place_id, place.id %></div>
-                        <% if current_user.joins.find_by(place_id: place.id).sanka_flg == 1 %>
-                            <%= f.submit "練習済み", class:"btn btn-primary btn-result" %>
-                        <% else %>
-                            <%= f.submit "未実施", class:"btn btn-primary btn-result" %>
-                        <% end %>
-                    <% end %>
                         <div>
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter<%= place.id %>">
                              参加可能性 
                             </button>
-                            <% myjoin = current_user.joins.find_by(place_id: place.id) %>
-                            <% if myjoin.attend_flg == 0 %>絶対参加します
-                            <% elsif myjoin.attend_flg == 1 %>多分参加します
-                            <% elsif myjoin.attend_flg == 2 %>五分五分
-                            <% elsif myjoin.attend_flg == 3 %>きびしいけど行きたい
-                            <% end %>
+                            <div class="my-attend">
+                                <% myjoin = current_user.joins.find_by(place_id: place.id) %>
+                                <% if myjoin.attend_flg == 0 %>絶対参加
+                                <% elsif myjoin.attend_flg == 1 %>多分参加
+                                <% elsif myjoin.attend_flg == 2 %>五分五分
+                                <% elsif myjoin.attend_flg == 3 %>きびしいが
+                                <% end %>
+                            </div>
                         </div>
                         <!-- モーダルの設定 -->
                         <div class="modal fade" id="exampleModalCenter<%= place.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -111,6 +103,18 @@
                             </div>
                           </div>
                         </div>
+                    <!-- 練習済みフラグ -->
+                    <div class="result">
+                        <%= form_for(current_user.joins.find_by(place_id: place.id),
+                                        url: {controller: "joins", action: "update_sanka"}, class:"right") do |f| %>
+                            <div><%= hidden_field_tag :place_id, place.id %></div>
+                            <% if current_user.joins.find_by(place_id: place.id).sanka_flg == 1 %>
+                                <%= f.submit "練習済み", class:"btn btn-primary btn-result" %>
+                            <% else %>
+                                <%= f.submit "未実施", class:"btn btn-primary btn-result" %>
+                            <% end %>
+                        <% end %>
+                    </div>
                 </div>
             </div>
         <% end %>

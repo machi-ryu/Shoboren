@@ -147,6 +147,20 @@ header {
         float: left;
         height: 100%;
         overflow: hidden;
+        position: relative;
+        .btn {
+            padding: 0;
+            width: 100%;
+            font-size: 0.7em;
+        }
+        .my-attend {
+            width: 100%;
+            font-size: 0.7em;
+        }
+        .result {
+            position: absolute;
+            bottom: 0;
+        }
     }
 }
 
