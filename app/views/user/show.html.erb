@@ -35,13 +35,15 @@
 
     <div class="recently-place">
         <p>次の予定</p>
-        <div class="name">
-            <%= @recently_place != nil ? @recently_place.name : "予定が入っていません。入れてみては。" %>
-        </div>
-        <div class="detail">
-            <div class="time"><%= @recently_place.stime.strftime("%m/%d %a %H:%M〜") %><%= @recently_place.etime.strftime("%H:%M") %></div>
-            <div class="menu"><%= @recently_place.menu %></div>
-        </div>
+        <% if @recently_place.nil? %>
+            予定が入っていません。入れてみては。
+        <% else %>
+            <div class="name"><%= @recently_place.name %></div>
+            <div class="detail">
+                <div class="time"><%= @recently_place.stime.strftime("%m/%d %a %H:%M〜") %><%= @recently_place.etime.strftime("%H:%M") %></div>
+                <div class="menu"><%= @recently_place.menu %></div>
+            </div>
+        <% end %>
     </div>
 
     <div class="my-places">
