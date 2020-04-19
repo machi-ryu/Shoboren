@@ -155,6 +155,11 @@ header {
 //ウィンドウ幅が最大479pxまでの場合に適用 //////////////////////////////
 @media screen and (max-width: 479px) {
 
+/* common */////////////////////
+#content {
+    margin: auto;
+    width: 100%;
+}
 /* my-page *//////////////////////
 .my-places {
     margin: 5px;
