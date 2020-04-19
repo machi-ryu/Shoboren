@@ -8,6 +8,8 @@ class PlacesController < ApplicationController
 
     def show
         @place = Place.find(params[:id])
+        @p_joins = Join.all.where("place_id = (?)", params[:id])
+        @p_users = User.where("id IN (?)", @place.user_ids)
     end
 
     def new

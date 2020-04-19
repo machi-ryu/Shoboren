@@ -1,10 +1,22 @@
-<h1>場所データ</h1>
+<div id="place-detail">
+    <h1><div class="name"><%= @place.name %></div></h1>
 
-<%= link_to "場所修正", edit_place_path, class:"btn btn-primary"%>
+    <%= link_to "場所修正", edit_place_path, class:"btn btn-place-modify btn-primary"%>
 
-<div class="container">
-    <div class="name"><%= @place.name %></div>
-    <div class="menu"><%= @place.menu %></div>
-    <div class="time"><%= @place.stime.strftime("%m/%d %a %H:%M〜") %><%= @place.etime.strftime("%H:%M") %></div>
-    <div class="intention_state"><%= @place.intention_state %></div>
-<div>
+    <div class="container">
+        <div class="time"><%= @place.stime.strftime("%m/%d %a %H:%M〜") %><%= @place.etime.strftime("%H:%M") %></div>
+        <div class="menu"><%= @place.menu %></div>
+        <div class="list">
+            <div><%= @p_joins.count %> 人</div>
+            絶対<%= @p_joins.where("attend_flg = (?)", 0).count %>人
+            たぶん<%= @p_joins.where("attend_flg = (?)", 1).count %>人
+            五分<%= @p_joins.where("attend_flg = (?)", 2).count %>人
+            きびしいが<%= @p_joins.where("attend_flg = (?)", 3).count %>人
+        </div>
+        <div class="member">
+            <% @p_users.each do |user| %>
+                <div class="member-name"><%= user.name %></div>
+            <% end %>
+        </div>
+    <div>
+</div>

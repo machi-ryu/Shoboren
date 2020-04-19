@@ -1,6 +1,6 @@
 <div id="my-page">
     <p><%= @user.name %>さん　マイページ</p>
-    <p><% if @user.level == 0 %>健康のため</p>
+    <p>しょぼ練区分　<% if @user.level == 0 %>健康のため</p>
         <p><% elsif @user.level == 1 %>草サッカー</p>
         <p><% elsif @user.level == 2 %>アスリート</p>
         <p><% elsif @user.level == 3 %>トップアスリート</p>
@@ -33,10 +33,25 @@
         <% end %>
     <% end %>
 
+    <div class="recently-place">
+        <p>次の予定</p>
+        <div class="name">
+            <%= @recently_place != nil ? @recently_place.name : "予定が入っていません。入れてみては。" %>
+        </div>
+        <div class="detail">
+            <div class="time"><%= @recently_place.stime.strftime("%m/%d %a %H:%M〜") %><%= @recently_place.etime.strftime("%H:%M") %></div>
+            <div class="menu"><%= @recently_place.menu %></div>
+        </div>
+    </div>
+
     <div class="my-places">
-        <p>予定場所</p>
+        <p>予定一覧</p>
         <% @places.each do |place| %>
+        <% if place.etime >= DateTime.now %>
             <div class="my-place">
+        <% else %>
+            <div class="my-place finish">
+        <% end %>
                 <div class="title">
                     <div class="name"><%= link_to place.name, place %></div>
                     <div class="list">

@@ -9,6 +9,10 @@ class UserController < ApplicationController
         @places = Place.where("id IN (?)", id).order(etime: :DESC)
         #@places2 = Place.all
 
+        myplace = Place.where("id IN (?)", id)
+        future_place = myplace.where("stime >= (?)", DateTime.now)
+        @recently_place = future_place.order(:stime).first
+
         sanka_place = current_user.places.where("sanka_flg = (?)", 1)
         @sanka_place = sanka_place.order(etime: :DESC).first
         if @sanka_place.nil?
@@ -18,6 +22,7 @@ class UserController < ApplicationController
         end
 
         @joins = current_user.joins
+
     end
 
     def edit
