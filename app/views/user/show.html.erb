@@ -7,9 +7,9 @@
     <% end %>
 
     <!-- 空いた期間表示 -->
-    前回のしょぼ練より
+    <p>前回のしょぼ練より
         <span class="interval-day"><%= @sanka_place.nil? ? nil : @blank_term %></span>
-    日間空いています。
+    日間空いています。</p>
 
     <% if @user.level == 3 %></p><!-- トップアスリート-->
         <p><% if @blank_term >= 7 %>もうやばいですよ</p>
@@ -57,7 +57,7 @@
                 <div class="title">
                     <div class="name"><%= link_to place.name, place %></div>
                     <div class="list">
-                        <div><%= @joins.where("place_id = (?)", place.id).count %> 人</div>
+                        <div><%= place.joins.count %> 人</div>
                         絶対<%= place.joins.where("attend_flg = (?)", 0).count %>人
                         たぶん<%= place.joins.where("attend_flg = (?)", 1).count %>人
                         五分<%= place.joins.where("attend_flg = (?)", 2).count %>人
