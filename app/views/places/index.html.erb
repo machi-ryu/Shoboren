@@ -4,7 +4,11 @@
 
 <div class="places">
     <% @places.each do |place| %>
+    <% if place.etime >= DateTime.now %>
         <div class="place">
+    <% else %>
+        <div class="place finish">
+    <% end %>
             <div class="title">
                 <div class="name"><%= link_to place.name, place %></div>
                 <div class="list">
