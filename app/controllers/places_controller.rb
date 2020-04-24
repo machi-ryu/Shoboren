@@ -10,6 +10,8 @@ class PlacesController < ApplicationController
         @place = Place.find(params[:id])
         @p_joins = Join.all.where("place_id = (?)", params[:id])
         @p_users = User.where("id IN (?)", @place.user_ids)
+        @post = Post.new
+        @posts = @place.posts.order(created_at: :DESC)
     end
 
     def new
@@ -37,6 +39,7 @@ class PlacesController < ApplicationController
             render 'edit'
         end
     end
+
     private
         def place_params
             params.require(:place).permit(:name, :menu, :intention_state , :stime, :etime)

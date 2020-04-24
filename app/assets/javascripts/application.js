@@ -55,7 +55,7 @@ $(function () {
 
             //events: '/events.json', 以下に追加
             $('#calendar').fullCalendar({
-                events: '/users.json',
+                events: '/user.json',
                 //カレンダー上部を年月で表示させる
                 titleFormat: 'YYYY年 M月',
                 //曜日を日本語表示
