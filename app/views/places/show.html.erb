@@ -22,7 +22,10 @@
                 </div>
                 <div class="member">
                     <% @p_users.each do |user| %>
-                        <div class="member-name"><%= user.name %></div>
+                        <div class="member-name">
+                            <%= image_tag user.image.to_s %>
+                            <%= user.name %>
+                        </div>
                     <% end %>
                 </div>
             </div>

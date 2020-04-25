@@ -7,6 +7,9 @@
     <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true, autocomplete: "name" %><br>
 
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+
     <%= f.label :level %><br />
     <%= f.select :level, [["健康のため", 0], ["草サッカー", 1], ["アスリート", 2], ["トップアスリート", 3]] %><br>
 

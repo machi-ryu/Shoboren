@@ -7,4 +7,6 @@ class User < ApplicationRecord
   has_many :places, through: :joins
   has_many :posts, dependent: :destroy
 
+  mount_uploader :image, ImageUploader
+
 end
