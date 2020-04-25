@@ -93,10 +93,8 @@ $(function () {
             });
         }
     });
-});
 
 //タブ切り替え
-$(function(){
     $('.tab').click(function(){
         $('.is-active').removeClass('is-active');
         $(this).addClass('is-active');
@@ -105,4 +103,5 @@ $(function(){
         $('.panel').eq(index).addClass('is-show');
 
     });
+
 });
