@@ -93,15 +93,16 @@ $(function () {
             });
         }
     });
+});
 
 //タブ切り替え
+jQuery(function($){
     $('.tab').click(function(){
         $('.is-active').removeClass('is-active');
         $(this).addClass('is-active');
         $('.is-show').removeClass('is-show');
-        const index = $(this).index();
-        $('.panel').eq(index).addClass('is-show');
+        //const index = $(this).index();
+        //$('.panel').eq(index).addClass('is-show');
 
     });
-
 });
