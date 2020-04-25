@@ -101,7 +101,7 @@ jQuery(function($){
         $('.is-active').removeClass('is-active');
         $(this).addClass('is-active');
         $('.is-show').removeClass('is-show');
-        let index = $(this).index();
+        var index = $(this).index();
         $('.panel').eq(index).addClass('is-show');
     });
 });
