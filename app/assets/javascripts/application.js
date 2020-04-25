@@ -96,8 +96,7 @@ $(function () {
 });
 
 //タブ切り替え
-/*
-jQuery(function($){
+$(function(){
     $('.tab').click(function(){
         $('.is-active').removeClass('is-active');
         $(this).addClass('is-active');
@@ -107,4 +106,3 @@ jQuery(function($){
 
     });
 });
-*/
