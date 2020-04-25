@@ -1,0 +1,33 @@
+
+        <%= form_for @post do |f| %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :place_id, :value => @place.id %>
+            <%= f.label "メッセージ" %>
+            <%= f.text_field :content, class:"form-control" %>
+
+            <%= f.submit "送信", class:"btn btn-primary" %>
+        <% end %>
+        <div class="line-bc">
+            <% @posts.each do |post| %>
+                <% if post.user_id != current_user.id %>
+                    <div class="balloon6">
+                        <div class="faceicon"><img src="#.jpg" alt=""></div>
+                        <div class="chatting">
+                            <div class="says">
+                                <span><%= User.find(post.user_id).name %></span>
+                                <span><%= post.content %></span>
+                                <span><%= post.created_at.strftime('%m/%d %H:%M') %></span>
+                            </div>
+                        </div>
+                    </div>
+                <% else %>
+                    <div class="mycomment">
+                    <p>
+                        <span><%= User.find(post.user_id).name %></span>
+                        <span><%= post.content %></span>
+                        <span><%= post.created_at.strftime('%m/%d %H:%M') %></span>
+                    </p>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
