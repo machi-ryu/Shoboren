@@ -11,7 +11,7 @@
             <% @posts.each do |post| %>
                 <% if post.user_id != current_user.id %>
                     <div class="balloon6">
-                        <div class="faceicon"><img src="#.jpg" alt=""></div>
+                        <div class="faceicon"><%= image_tag User.find(post.user_id).image.to_s %></div>
                         <div class="chatting">
                             <div class="says">
                                 <span><%= User.find(post.user_id).name %></span>
