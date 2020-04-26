@@ -55,7 +55,7 @@ $(function () {
 
             //events: '/events.json', 以下に追加
             $('#calendar').fullCalendar({
-                events: '/user.json',
+                events: '/my/events.json',
                 //カレンダー上部を年月で表示させる
                 titleFormat: 'YYYY年 M月',
                 //曜日を日本語表示
@@ -83,7 +83,8 @@ $(function () {
                 //イベントの時間表示を２４時間に
                 timeFormat: "HH:mm",
                 //イベントの色を変える
-                eventColor: '#87cefa',
+                //eventColor: '#87cefa',
+                eventColor: '#eeeeee',
                 //イベントの文字色を変える
                 eventTextColor: '#000000',
                 eventRender: function(event, element) {

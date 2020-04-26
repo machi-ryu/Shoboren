@@ -13,5 +13,8 @@ Rails.application.routes.draw do
   end
   resources :users
   resources :posts
-
+  
+  namespace :my do
+    resources :events, only: [:index]
+  end
 end
