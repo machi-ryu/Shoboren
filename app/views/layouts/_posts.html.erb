@@ -13,8 +13,8 @@
                     <div class="balloon6">
                         <div class="faceicon"><%= image_tag User.find(post.user_id).image.to_s %></div>
                         <div class="chatting">
+                                <div class="name"><%= User.find(post.user_id).name %></div>
                             <div class="says">
-                                <span><%= User.find(post.user_id).name %></span>
                                 <span><%= post.content %></span>
                             </div>
                             <span class="say-time"><%= post.created_at.strftime('%m/%d %H:%M') %></span>
@@ -24,7 +24,6 @@
                     <div class="mycomment">
                         <span class="say-time"><%= post.created_at.strftime('%m/%d %H:%M') %></span>
                     <p>
-                        <span><%= User.find(post.user_id).name %></span>
                         <span><%= post.content %></span>
                     </p>
                     </div>
