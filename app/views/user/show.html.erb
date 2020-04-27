@@ -36,7 +36,8 @@
     <% end %>
 
     <div class="recently-place">
-        <p>次の予定</p>
+        <span class="title">次の予定</span>
+        <p>
         <% if @recently_place.nil? %>
             予定が入っていません。入れてみては。
         <% else %>
@@ -46,6 +47,7 @@
                 <div class="menu"><%= @recently_place.menu %></div>
             </div>
         <% end %>
+        </p>
     </div>
 
     <div class="my-places">

@@ -56,6 +56,30 @@ header {
 
 .recently-place {
     margin: 30px 0;
+    background-color: #f8f8f8;
+
+    //ボックスデザイン
+    position: relative;
+    margin: 2em 0;
+    padding: 25px 10px 7px;
+    border: solid 3px gray;
+    .title {
+    position: absolute;
+    display: inline-block;
+    top: -2px;
+    left: -2px;
+    padding: 0 9px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 17px;
+    background: gray;
+    color: #ffffff;
+    font-weight: bold;
+    }
+    p {
+    margin: 0; 
+    padding: 0;
+    }
 }
 
 .my-places {
