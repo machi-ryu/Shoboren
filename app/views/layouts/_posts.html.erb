@@ -16,16 +16,16 @@
                             <div class="says">
                                 <span><%= User.find(post.user_id).name %></span>
                                 <span><%= post.content %></span>
-                                <span><%= post.created_at.strftime('%m/%d %H:%M') %></span>
                             </div>
+                            <span class="say-time"><%= post.created_at.strftime('%m/%d %H:%M') %></span>
                         </div>
                     </div>
                 <% else %>
                     <div class="mycomment">
+                        <span class="say-time"><%= post.created_at.strftime('%m/%d %H:%M') %></span>
                     <p>
                         <span><%= User.find(post.user_id).name %></span>
                         <span><%= post.content %></span>
-                        <span><%= post.created_at.strftime('%m/%d %H:%M') %></span>
                     </p>
                     </div>
                 <% end %>

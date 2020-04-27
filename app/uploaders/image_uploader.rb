@@ -9,9 +9,9 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
-  def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-  end
+  #def store_dir
+  #  "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  #end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
    def default_url(*args)
@@ -45,4 +45,40 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+
+#
+#  # アップロード先のストレージにSFTPを選択します。
+#  storage :sftp
+#
+#  # SFTPの設定を記述
+#  configure do |config|
+#  
+#   # SFTPホスト名を指定します。
+#  # config.sftp_host = "cdn.example.com"
+#   config.sftp_host = "ftp.lolipop.jp"
+#
+#   # SFTPアカウントユーザー名を指定します。
+#   #config.sftp_user = "vagrant"
+#   config.sftp_user = "oops.jp-iidesune"
+#
+#   # SFTPアカウントパスワードとポート番号(22固定)を指定します。
+#   config.sftp_options = {
+#    #:password => "vagrant",
+#    :password => "korokoro4624",
+#    :port => 22
+#   }
+#
+#   # SFTPホストにおける画像格納先を指定します。
+#   config.sftp_folder = "/home/rails/image"
+#
+#   # 上記、画像格納先を示すURLを指定します。
+#   config.sftp_url = "http://iidesune.net"
+#  end
+#
+#  # 上記、画像格納先フォルダ内における格納の仕方を指定します。
+#  # 下の場合、uploadsフォルダ他、色々と階層が作られます。
+#  def store_dir
+#   "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+#  end
 end

@@ -157,6 +157,13 @@ header {
 }
 
 /* place show*////////////////////
+#place-detail {
+    margin: 0 5px;
+    ul {
+        padding: 0;
+    }
+}
+
 //メンンバーアイコン
 .member img {
     width: 30px;
@@ -181,7 +188,7 @@ header {
 }
 
 .panel-group {
-    height: 100px;
+    //height: 100px;
     //border: solid 1px #CCC;
     border-top: none;
     background: #eee;
@@ -206,11 +213,12 @@ header {
 .line-bc {
     padding: 20px 10px;
     //max-width: 450px;
-    width: 80%;
+    //width: 80%;
     margin: 15px auto;
     text-align: right;
     font-size: 14px;
-    background: #e2e2e2;
+    //background: #e2e2e2;
+    border: solid 1px #CCC;
   
   }
   
@@ -273,7 +281,7 @@ header {
     padding: 8px;
     max-width: 250px;
     border-radius: 12px;
-    background: #30e852;
+    background: #ddffdd;
     font-size: 15px;
   }
   
@@ -283,9 +291,13 @@ header {
     top: 3px; 
     right: -19px;
     border: 8px solid transparent;
-    border-left: 18px solid #30e852;
+    border-left: 18px solid #ddffdd;
     -webkit-transform: rotate(-35deg);
     transform: rotate(-35deg);
+  }
+
+  .say-time {
+      color: #c8c8c8;
   }
 
 //ウィンドウ幅が最大479pxまでの場合に適用 //////////////////////////////
