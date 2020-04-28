@@ -260,9 +260,11 @@ header {
   }
   
   .balloon6 .faceicon img{
-    width: 100%;
-    height: auto;
+    width: 40px;
+    //height: auto;
+    height: 40px;
     border-radius: 50%;
+    object-fit: cover;
   }
   .balloon6 .chatting {
     width: 100%;
