@@ -5,7 +5,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "rails/shoboren/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
 end
