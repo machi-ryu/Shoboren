@@ -106,3 +106,16 @@ jQuery(function($){
         $('.panel').eq(index).addClass('is-show');
     });
 });
+
+//マイページの参加確率モーダル内のやめるラジオボタン選択したら、destroyに行くように
+$(function(){
+    $('input[name="join[attend_flg]"]').change(function(){
+        var val = $(this).val();
+        if(val == 9){
+            $('input[value="patch"]').attr("value", "delete")
+        }
+        else {
+            $('input[value="delete"]').attr("value", "patch")
+        }
+    });
+});

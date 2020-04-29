@@ -1,11 +1,39 @@
 
+
+
 <%if current_user.joins.find_by(place_id: place.id).nil? %>
-    <%= form_for(current_user.joins.build) do |f| %>
-        <div><%= hidden_field_tag :place_id, place.id %></div>
-        <%= f.submit "参加", class:"btn btn-primary btn-attend" %>
-    <% end %>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter<%= place.id %>">
+        参加
+    </button>
+    <!-- モーダルの設定 -->
+    <div class="modal fade" id="exampleModalCenter<%= place.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">参加可能性を入力ください</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+                    <%= form_for(current_user.joins.build) do |f| %>
+                        <div><%= f.hidden_field :place_id, :value => place.id %></div>
+                        <div><%= f.radio_button :attend_flg, 0 %> 絶対参加します</div>
+                        <div><%= f.radio_button :attend_flg, 1 %> 多分参加します</div>
+                        <div><%= f.radio_button :attend_flg, 2 %> 五分五分</div>
+                        <div><%= f.radio_button :attend_flg, 3 %> きびしいけど行きたい</div>
+                        <div class="modal-footer">
+                            <%= f.submit "参加", class:"btn btn-primary" %>
+                        </div>
+                    <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
 <% else%>
-    <%= form_for(current_user.joins.build) do |f| %>
+    <%= form_for(current_user.joins.find_by(place_id: place.id),
+                html: {method: :delete }, remote: true) do |f| %>
+        <div><%= hidden_field_tag :place_id, place.id %></div>
         <%= f.submit "参加予定", class:"btn btn-primary btn-grayout" %>
     <% end %>
 <% end %>

@@ -73,24 +73,17 @@
                     <div class="menu"><%= place.menu %></div>
                 </div>
                 <div class="btn-area">
-                    <!-- 参加フラグ -->
-                    <%= form_for(current_user.joins.find_by(place_id: place.id),
-                                html: { method: :delete }) do |f| %>
-                        <div><%= hidden_field_tag :place_id, place.id %></div>
-                        <%= f.submit "やめる", class:"btn btn-primary btn-attend" %>
-                    <% end %>
                         <div>
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter<%= place.id %>">
-                             参加可能性 
-                            </button>
                             <div class="my-attend">
                                 <% myjoin = current_user.joins.find_by(place_id: place.id) %>
-                                <% if myjoin.attend_flg == 0 %>絶対参加
-                                <% elsif myjoin.attend_flg == 1 %>多分参加
-                                <% elsif myjoin.attend_flg == 2 %>五分五分
-                                <% elsif myjoin.attend_flg == 3 %>きびしいが
+                                <% if myjoin.attend_flg == 0 %><div class="zettai">絶対参加</div>
+                                <% elsif myjoin.attend_flg == 1 %><div class="tabun">多分参加</div>
+                                <% elsif myjoin.attend_flg == 2 %><div class="gobu">五分五分</div>
+                                <% elsif myjoin.attend_flg == 3 %><div class="kibishiiga">きびしいが</div>
                                 <% end %>
                             </div>
+                            </button>
                         </div>
                         <!-- モーダルの設定 -->
                         <div class="modal fade" id="exampleModalCenter<%= place.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -114,6 +107,7 @@
                                             <div><%= f.radio_button :attend_flg, 1 %> 多分参加します</div>
                                             <div><%= f.radio_button :attend_flg, 2 %> 五分五分</div>
                                             <div><%= f.radio_button :attend_flg, 3 %> きびしいけど行きたい</div>
+                                            <div><%= f.radio_button :attend_flg, 9 %> やめる</div>
                                             <div class="modal-footer">
                                                 <%= f.submit "参加", class:"btn btn-primary" %>
                                             </div>

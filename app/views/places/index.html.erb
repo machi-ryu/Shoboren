@@ -24,16 +24,9 @@
                 <%= place.menu %>
             </div>
             <div class="btn-area">
-                <%if current_user.joins.find_by(place_id: place.id).nil? %>
-                    <%= form_for(current_user.joins.build) do |f| %>
-                        <div><%= hidden_field_tag :place_id, place.id %></div>
-                        <%= f.submit "参加", class:"btn btn-primary btn-attend" %>
-                    <% end %>
-                <% else%>
-                    <%= form_for(current_user.joins.build) do |f| %>
-                        <%= f.submit "参加予定", class:"btn btn-primary btn-grayout" %>
-                    <% end %>
-                <% end %>
+                <div id="attend">
+                    <%= render 'layouts/attend', place: place %>
+                </div>
             </div>
         </div>
     <% end %>

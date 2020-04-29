@@ -1,13 +1,28 @@
 class JoinsController < ApplicationController
 
     def create
-        current_user.joins.create(place_id: params[:place_id])
-        redirect_to root_path
+        #current_user.joins.create(place_id: params[:place_id])
+        current_user.joins.create(join_params)
+        #@place = Place.find(myjoin.place_id)
+        #@place = Join.all.places.find(join_params)
+        @place = Place.find(params[:join][:place_id])
+        #redirect_to root_path
+        @places = Place.all.order(etime: :DESC)
+        @joins = Join.all
+        respond_to do |format|
+            format.html { redirect_to controller: :places, action: :index }
+            format.js { @place }
+        end
     end
 
     def destroy
         current_user.joins.find_by(place_id: params[:place_id]).destroy
-        redirect_to root_path
+        @place = Place.find(params[:place_id])
+        #redirect_to root_path
+        respond_to do |format|
+            format.html { redirect_to root_path}
+            format.js { @place }
+        end
     end
 
     def update
