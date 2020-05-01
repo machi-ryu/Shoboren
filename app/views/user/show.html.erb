@@ -82,13 +82,11 @@
                                 <% elsif myjoin.attend_flg == 3 %>kibishiiga
                                 <% end %>
                                 " data-toggle="modal" data-target="#exampleModalCenter<%= place.id %>">
-                            <div class="my-attend">
                                 <% if myjoin.attend_flg == 0 %>絶対参加
                                 <% elsif myjoin.attend_flg == 1 %>多分参加
                                 <% elsif myjoin.attend_flg == 2 %>五分五分
                                 <% elsif myjoin.attend_flg == 3 %>きびしいが
                                 <% end %>
-                            </div>
                         </button>
                         <!-- モーダルの設定 -->
                         <div class="modal fade" id="exampleModalCenter<%= place.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
