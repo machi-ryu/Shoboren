@@ -1,0 +1,12 @@
+
+    <%= form_for(current_user.joins.find_by(place_id: place.id),
+                    url: {controller: "joins", action: "update_sanka"}, 
+                    class:"right",
+                    remote: true ) do |f| %>
+        <div><%= hidden_field_tag :place_id, place.id %></div>
+        <% if current_user.joins.find_by(place_id: place.id).sanka_flg == 1 %>
+            <%= f.submit "練習済み", class:"btn btn-primary btn-result" %>
+        <% else %>
+            <%= f.submit "未実施", class:"btn btn-primary btn-result yet" %>
+        <% end %>
+    <% end %>

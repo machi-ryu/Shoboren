@@ -89,6 +89,7 @@ header {
 .my-place {
     height: 100px;
     border-top: 1px solid gray;
+    position: relative;
     &:last-child{
         border-bottom: 1px solid gray;
     }
@@ -112,31 +113,39 @@ header {
         //width: 20%;
         float: left;
         height: 100%;
+        position: absolute;
+        right: 5px;
         .btn {
+            width: 100px;
+        }
+        .result {
+            position: absolute;
+            bottom: 2px;
         }
     }
 }
+
+.btn-result.yet {
+    color: gray;
+    background-color: #fff;
+}
+
 
 .finish {
     background-color: rgba(192, 192, 192, 0.5);
 }
 
-.btn-result {
-    width: 130px;
-    background-color: skyblue;
-}
-
 .zettai {
-    background-color: blue;
+    background-color: #aaf;
 }
 .tabun {
-    background-color: green;
+    background-color: #cbf;
 }
 .gobu {
-    background-color: yellow;
+    background-color: #fbc;
 }
 .kibishiiga {
-    background-color: red;
+    background-color: #faa;
 }
 
 

@@ -40,7 +40,12 @@ class JoinsController < ApplicationController
             @join.sanka_flg = 1
         end
         @join.save
-        redirect_to root_path
+        #redirect_to root_path
+        @place = Place.find(params[:place_id])
+        respond_to do |format|
+            format.html { redirect_to root_path }
+            format.js
+        end
     end
 
     def show

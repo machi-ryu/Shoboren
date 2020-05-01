@@ -73,18 +73,23 @@
                     <div class="menu"><%= place.menu %></div>
                 </div>
                 <div class="btn-area">
-                        <div>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter<%= place.id %>">
-                            <div class="my-attend">
+                    <div class="schedule">
+                        <button type="button" class="btn btn-primary 
                                 <% myjoin = current_user.joins.find_by(place_id: place.id) %>
-                                <% if myjoin.attend_flg == 0 %><div class="zettai">絶対参加</div>
-                                <% elsif myjoin.attend_flg == 1 %><div class="tabun">多分参加</div>
-                                <% elsif myjoin.attend_flg == 2 %><div class="gobu">五分五分</div>
-                                <% elsif myjoin.attend_flg == 3 %><div class="kibishiiga">きびしいが</div>
+                                <% if myjoin.attend_flg == 0 %>zettai
+                                <% elsif myjoin.attend_flg == 1 %>tabun
+                                <% elsif myjoin.attend_flg == 2 %>gobu
+                                <% elsif myjoin.attend_flg == 3 %>kibishiiga
+                                <% end %>
+                                " data-toggle="modal" data-target="#exampleModalCenter<%= place.id %>">
+                            <div class="my-attend">
+                                <% if myjoin.attend_flg == 0 %>絶対参加
+                                <% elsif myjoin.attend_flg == 1 %>多分参加
+                                <% elsif myjoin.attend_flg == 2 %>五分五分
+                                <% elsif myjoin.attend_flg == 3 %>きびしいが
                                 <% end %>
                             </div>
-                            </button>
-                        </div>
+                        </button>
                         <!-- モーダルの設定 -->
                         <div class="modal fade" id="exampleModalCenter<%= place.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                           <div class="modal-dialog modal-dialog-centered" role="document">
@@ -117,17 +122,10 @@
                             </div>
                           </div>
                         </div>
+                    </div>
                     <!-- 練習済みフラグ -->
-                    <div class="result">
-                        <%= form_for(current_user.joins.find_by(place_id: place.id),
-                                        url: {controller: "joins", action: "update_sanka"}, class:"right") do |f| %>
-                            <div><%= hidden_field_tag :place_id, place.id %></div>
-                            <% if current_user.joins.find_by(place_id: place.id).sanka_flg == 1 %>
-                                <%= f.submit "練習済み", class:"btn btn-primary btn-result" %>
-                            <% else %>
-                                <%= f.submit "未実施", class:"btn btn-primary btn-result" %>
-                            <% end %>
-                        <% end %>
+                    <div class="result" id="result<%= place.id%>">
+                        <%= render 'user/result', place: place %>
                     </div>
                 </div>
             </div>
