@@ -42,6 +42,13 @@ class JoinsController < ApplicationController
         @join.save
         #redirect_to root_path
         @place = Place.find(params[:place_id])
+        sanka_place = current_user.places.where("sanka_flg = (?)", 1)
+        @sanka_place = sanka_place.order(etime: :DESC).first
+        if @sanka_place.nil?
+            @blank_term = 0
+        else
+            @blank_term = (Date.today - Date.parse(@sanka_place.etime.to_s)).to_i
+        end
         respond_to do |format|
             format.html { redirect_to root_path }
             format.js
