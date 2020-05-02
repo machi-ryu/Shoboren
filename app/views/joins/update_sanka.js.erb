@@ -1,2 +1,5 @@
 $("#result<%= @place.id %>").html("<%= escape_javascript(render('user/result', place: @place)) %>");
-$("#interval-day").html("<%= @sanka_place.nil? ? nil : @blank_term %>");
+$("#interval").html("<%= escape_javascript(render('user/interval',
+                           sanka_place: @sanka_place,
+                           blank_term: @blank_term,
+                           user: @user )) %>");

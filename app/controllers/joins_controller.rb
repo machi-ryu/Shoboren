@@ -49,6 +49,7 @@ class JoinsController < ApplicationController
         else
             @blank_term = (Date.today - Date.parse(@sanka_place.etime.to_s)).to_i
         end
+        @user = current_user
         respond_to do |format|
             format.html { redirect_to root_path }
             format.js

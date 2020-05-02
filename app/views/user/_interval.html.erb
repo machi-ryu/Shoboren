@@ -1,0 +1,25 @@
+    
+    前回のしょぼ練より
+        <span id="interval-day"><%= sanka_place.nil? ? nil : blank_term %></span>
+    日間空いています。
+    <% if user.level == 3 %></p><!-- トップアスリート-->
+        <p><% if blank_term >= 7 %>もうやばいですよ</p>
+        <p><% elsif blank_term >= 3 %>コンディション下がりますよ。戻すのに２週間かかります。</p>
+        <p><% elsif blank_term >= 0 %>いい感じですね。</p>
+        <% end %>
+    <% elsif user.level == 2 %><!-- アスリート -->
+        <p><% if blank_term >= 14 %>もうやばいですよ</p>
+        <p><% elsif blank_term >= 7 %>コンディション下がりますよ。戻すのに２週間かかります。</p>
+        <p><% elsif blank_term >= 0 %>いい感じですね。</p>
+        <% end %>
+    <% elsif user.level == 1 %><!-- 草サッカー -->
+        <p><% if blank_term >= 14 %>そろそろいかないと、あんまり動けなくなりますよ。</p>
+        <p><% elsif blank_term >= 7 %>今週どこかでいきたいですね。</p>
+        <p><% elsif blank_term >= 0 %>いい感じですね。</p>
+        <% end %>
+    <% elsif user.level == 0 %><!-- 健康のため-->
+        <p><% if blank_term >= 14 %>もうやばいですよ</p>
+        <p><% elsif blank_term >= 7 %>コンディション下がりますよ。戻すのに２週間かかります。</p>
+        <p><% elsif blank_term >= 0 %>いい感じですね。</p>
+        <% end %>
+    <% end %>
