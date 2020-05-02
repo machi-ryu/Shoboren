@@ -1,7 +1,5 @@
+<% @page_title = 'マイページ' %>
 <div id="my-page">
-    <%= image_tag @user.image.to_s %>
-    <%= @user.name %>さん　マイページ
-    </p>
     <p>しょぼ練区分　<% if @user.level == 0 %>健康のため</p>
         <p><% elsif @user.level == 1 %>草サッカー</p>
         <p><% elsif @user.level == 2 %>アスリート</p>

@@ -11,6 +11,10 @@
     }
 }
 
+.nabvar-inverse {
+    margin-bottom: 10px;
+}
+
 /* mixins, variables, etc. */
 @mixin box_sizing {
     -moz-box-sizing: border-box;
@@ -41,12 +45,27 @@ header {
 }
 
 /* my-page *///////////////////////
-#my-page {
+#header2 {
+    margin-bottom: 40px;
+    height: 50px;
+    .logout {
+        float: right;
+    }
+}
+#page-title {
+    font-size: 2em;
+}
+#user-name {
     margin: 0 5px;
+    float: right;
     img {
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
+    }
+    a {
+        display: block;
+        margin-left: 40px;
     }
 }
 
@@ -360,6 +379,10 @@ header {
 #content {
     margin: auto;
     width: 100%;
+}
+#user-name a {
+    display: block;
+    margin-left: 40px;
 }
 /* my-page *//////////////////////
 .my-places {

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ShoborenApp</title>
+    <title><%= page_title_tag %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -13,7 +13,23 @@
   <body data-turbolinks="false">
     <%= render 'layouts/header' %>
     <div id="content">
+      <% if current_user != nil %>
+        <div id="header2">
+          <span id="page-title"><%= @page_title %></span>
+          <span id="user-name">
+            <span><%= image_tag current_user.image.to_s %></span>
+            <span>
+              <%= current_user.name %>さん
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+              <%= link_to "ユーザー設定", edit_user_registration_path %>
+            </span>
+          </span>
+        </div>
+      <% else %>
+      <% end %>
+
       <%= yield %>
+
       <div id="debug"><%= debug(params) if Rails.env.development? %></div>
     </div>
   </body>
